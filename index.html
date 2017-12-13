@@ -31,9 +31,10 @@
     </nav>
     <div class="container">
         <!-- this is our pregame div which contains our start button which will reset the game -->
-        <div class="row text-center hide" id="pregame">
-            <button class="btn btn-danger btn-lg">Click here to start...
-                <br>if you dare!</button>
+        <div class="row text-center" id="pregame">
+            <h1>Your time has come.</h1>
+            <br>
+            <button class="btn btn-danger btn-lg">Begin the inquisition.</button>
         </div>
 
         <!-- this div contains our quiz game proper -->
@@ -47,26 +48,26 @@
                 </div>
             </div>
             <div class="row text-center">
-                <div class="col-md-5 col-sm-12" id="a1">
+                <div class="col-md-5 col-sm-12 answer" id="a1">
                     Answer 1
                 </div>
-                <div class="col-md-5 col-sm-12" id="a2">
+                <div class="col-md-5 col-sm-12 answer" id="a2">
                     Answer 2
                 </div>
             </div>
             <div class="row text-center">
-                <div class="col-md-5 col-sm-12" id="a3">
+                <div class="col-md-5 col-sm-12 answer" id="a3">
                     Answer 3
                 </div>
-                <div class="col-md-5 col-sm-12" id="a4">
+                <div class="col-md-5 col-sm-12 answer" id="a4">
                     Answer 4
                 </div>
             </div>
         </div>
 
         <!-- putting whether you got it right or wrong here -->
-        <div id="right-wrong" class="text-center">
-            <div class="row">
+        <div id="right-wrong" class="text-center hide">
+            <div class="row" id="correct-text">
                 <h1>You got it wrong.</h1>
                 <br>
                 <h3>The correct answer was Jack the Clown</h2>
@@ -78,6 +79,17 @@
             <br>
             <img src="assets/images/chance.gif">
 
+        </div>
+
+        <!-- endgame div here -->
+        <div id="endgame" class="hide">
+            <div class="row text-center">
+                <h1>Game Over</h1>
+                <h2>You got
+                    <span id="questions-right">X</span> out of 5 questions right!</h2>
+                <br>
+                <button class="btn btn-lg btn-warning">Take a Chance and try again...</button>
+            </div>
         </div>
 
     </div>
