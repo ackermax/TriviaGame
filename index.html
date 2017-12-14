@@ -6,7 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HHN Trivia</title>
+    
+    <!-- jQuery and javaScript here -->
+    <script src="assets/javascript/jquery-3.2.1.min.js"></script>
+    <script src="assets/javascript/app.js"></script>
+    
     <link rel="stylesheet" href="assets/css/reset.css">
+
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
@@ -41,10 +47,10 @@
         <div id="quiz-game" class="hide">
             <div class="row" id="question-block">
                 <div class="col-md-9 text-left">
-                    <h1>QUESTION GOES HERE</h1>
+                    <h1 id="question">QUESTION GOES HERE</h1>
                 </div>
                 <div class="col-md-2 col-md-offset-1 text-left">
-                    <h2>30</h2>
+                    <h2 id="time-left">30</h2>
                 </div>
             </div>
             <div class="row text-center">
