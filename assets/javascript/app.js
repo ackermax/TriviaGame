@@ -25,6 +25,7 @@ var quiz = {
         //if you have finished the last question
         if (quiz.questionNumber === 5) {
             $("#questions-right").text(quiz.points);
+            $("#questions-wrong").text(5 - quiz.points);
             $("#right-wrong").addClass("hide");
             $("#endgame").removeClass("hide");
         }
