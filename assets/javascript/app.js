@@ -1,6 +1,7 @@
 //make our timers global variables
 var questionTimeout;
-var rightWrongTimeout
+var rightWrongTimeout;
+var timeLeft;
 // we're gonna try to build our game inside of this object and see what happens
 var quiz = {
     // our questions go here
@@ -15,8 +16,6 @@ var quiz = {
     points: 0,
     questionNumber: 0,
     correctAnswer: "",
-    timeLeft: 30,
-    //reset game function
    
     //new question function to put questions up on screen
     newQuestion: function() {
@@ -42,21 +41,38 @@ var quiz = {
         $("#quiz-game").removeClass("hide");
 
         //we start the timer function
-        quiz.timeLeft = 30;
-        questionTimeout = setInterval(quiz.questionTimer(), 1000);
+        timeLeft = 30;
+        $("#time-left").text(timeLeft);
+        questionTimeout = setInterval(quiz.questionTimer, 1000);
 
     },
+
+    //reset game function
     resetGame: function() {
         quiz.points = 0;
         quiz.questionNumber = 0;
         quiz.newQuestion();
     },
+
+    //this is our timer
     questionTimer: function(){
-        quiz.timeLeft --;
-        $("#time-left").text(quiz.timeleft)
+        timeLeft --;
+        $("#time-left").text(timeLeft);
         if (quiz.timeLeft == 0) {
+            //this is what happens when our timer goes to 0
             quiz.timeout();
         }
     },
-
+    //this is what happens when you select a function
+    questionSelect: function(event){
+        clearInterval(questionTimeout);
+        if ($(this).is("#"+quiz.correctAnswer)) {
+            quiz.points ++;
+            $("#correct-text").html("<h1>That answer is correct.</h1>");
+            quiz.finishQuestion();
+        }
+        else {
+            $("#correct-text").html("<h1>You are gravely mistaken.</h1><br><h3>The correct answer was " + correctAnswer + ".</h3>")
+        }
+    }
 }
