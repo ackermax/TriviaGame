@@ -32,7 +32,7 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <p class="navbar-text navbar-left">Halloween Horror Nights Trivia</p>
-            <p class="navbar-text navbar-right">Question x of 5</p>
+            <p id="questnav" class="hide navbar-text navbar-right">Question <span id="qnumb">x</span> of 5</p>
         </div>
     </nav>
     <div class="container">
@@ -40,7 +40,7 @@
         <div class="row text-center" id="pregame">
             <h1>Your time has come.</h1>
             <br>
-            <button id="button" class="btn btn-danger btn-lg">Begin the inquisition.</button>
+            <button class="btn btn-danger btn-lg new-game">Begin the inquisition.</button>
         </div>
 
         <!-- this div contains our quiz game proper -->
@@ -83,7 +83,7 @@
                 <p id="fun-fact">Did you know that Jack the Clown is my best friend?</p>
             </div>
             <br>
-            <img src="assets/images/chance.gif">
+            <img id="gif">
 
         </div>
 
@@ -94,7 +94,9 @@
                 <h2>You got
                     <span id="questions-right">X</span> out of 5 questions right!</h2>
                 <br>
-                <button id="button" class="btn btn-lg btn-warning">Take a Chance and try again...</button>
+                <button class="btn btn-lg btn-warning new-game">Take a Chance and try again...</button>
+                <br> <br>
+                <img src="assets/images/chance.gif">
             </div>
         </div>
 
