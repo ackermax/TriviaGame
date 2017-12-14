@@ -63,16 +63,22 @@ var quiz = {
             quiz.timeout();
         }
     },
-    //this is what happens when you select a function
+    //this is what happens when you select an answer
     questionSelect: function(event){
         clearInterval(questionTimeout);
-        if ($(this).is("#"+quiz.correctAnswer)) {
+        if ($(this).is("#" + quiz.correctAnswer)) {
             quiz.points ++;
             $("#correct-text").html("<h1>That answer is correct.</h1>");
             quiz.finishQuestion();
         }
         else {
-            $("#correct-text").html("<h1>You are gravely mistaken.</h1><br><h3>The correct answer was " + correctAnswer + ".</h3>")
+            $("#correct-text").html("<h1>You are gravely mistaken.</h1><br><h3>The correct answer was " + correctAnswer + ".</h3>");
+            quiz.finishQuestion();
         }
     }
 }
+
+$(document).ready(function(){
+    $("#button").click(quiz.resetGame);
+    $(".answer").click(quiz.questionSelect);
+});
