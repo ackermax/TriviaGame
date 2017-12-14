@@ -27,6 +27,7 @@ var quiz = {
             $("#right-wrong").addClass("hide");
             $("#endgame").removeClass("hide");
         }
+        //otherwise we give you a new question from the question object
         else {
             $("#qnumb").text(questionNumber + 1);
             $("#questnav").removeClass("hide");
@@ -76,25 +77,26 @@ var quiz = {
     questionSelect: function () {
         clearInterval(questionTimeout);
         clearTimeout(rightWrongTimeout);
-
+        //if the answer is correct through looking at the correctAnswer div id
         if ($(this).is("#" + quiz.correctAnswer)) {
             quiz.points++;
             $("#correct-text").html("<h1>That answer is correct.</h1>");
             quiz.finishQuestion();
         }
+        // if the answer is wrong
         else {
             $("#correct-text").html("<h1>You are gravely mistaken.</h1><br><h3>The correct answer was " + quiz.questions[questionNumber][quiz.correctAnswer] + ".</h3>");
             quiz.finishQuestion();
         }
     },
-
+    //if you timeout
     timeout: function () {
         clearInterval(questionTimeout);
 
         $("#correct-text").html("<h1>You have RUN out of time.</h1><br><h3>The correct answer was " + quiz.questions[questionNumber][quiz.correctAnswer] + ".</h3>");
         quiz.finishQuestion();
     },
-
+    //all the above three conditions funnel to this
     finishQuestion: function () {
         $("#fun-fact").text(quiz.questions[questionNumber].funFact);
         $("#gif").attr("src", quiz.questions[questionNumber].imgLoc);
@@ -104,7 +106,7 @@ var quiz = {
         setTimeout(quiz.newQuestion, 10000);
     },
 }
-
+//how we make the game work
 $(document).ready(function () {
     $(".new-game").click(quiz.resetGame);
     $(".answer").click(quiz.questionSelect);
