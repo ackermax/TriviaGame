@@ -1,9 +1,8 @@
 //make our timers global variables
 var questionTimeout;
 var rightWrongTimeout;
-var timeLeft;
-var questionNumber;
-var rightAnswer;
+
+
 // we're gonna try to build our game inside of this object and see what happens
 var quiz = {
     // our questions go here
@@ -17,31 +16,33 @@ var quiz = {
     // set our points and question # and correct answer and time left variables
     points: 0,
     correctAnswer: "",
+    timeLeft: 0,
+    questionNumber: 0,
 
     //new question function to put questions up on screen
     newQuestion: function () {
 
         //if you have finished the last question
-        if (questionNumber === 5) {
+        if (quiz.questionNumber === 5) {
             $("#questions-right").text(quiz.points);
             $("#right-wrong").addClass("hide");
             $("#endgame").removeClass("hide");
         }
         //otherwise we give you a new question from the question object
         else {
-            $("#qnumb").text(questionNumber + 1);
+            $("#qnumb").text(quiz.questionNumber + 1);
             $("#questnav").removeClass("hide");
             //puts question into question space
-            $("#question").text(quiz.questions[questionNumber].question);
+            $("#question").text(quiz.questions[quiz.questionNumber].question);
 
             //puts each answer in its proper div
             for (var i = 1; i <= 4; i++) {
 
-                $("#a" + i).text(quiz.questions[questionNumber]["a" + i]);
+                $("#a" + i).text(quiz.questions[quiz.questionNumber]["a" + i]);
             }
 
             //mark correct answer
-            quiz.correctAnswer = quiz.questions[questionNumber].correct;
+            quiz.correctAnswer = quiz.questions[quiz.questionNumber].correct;
 
             //We make sure every div that should be hidden is
             $("#pregame").addClass("hide");
@@ -52,8 +53,8 @@ var quiz = {
             $("#quiz-game").removeClass("hide");
 
             //we start the timer function
-            timeLeft = 30;
-            $("#time-left").text(timeLeft);
+            quiz.timeLeft = 30;
+            $("#time-left").text(quiz.timeLeft);
             questionTimeout = setInterval(quiz.questionTimer, 1000);
             rightWrongTimeout = setTimeout(quiz.timeout, 30000);
         }
@@ -63,14 +64,14 @@ var quiz = {
     //reset game function
     resetGame: function () {
         quiz.points = 0;
-        questionNumber = 0;
+        quiz.questionNumber = 0;
         quiz.newQuestion();
     },
 
     //this is our timer
     questionTimer: function () {
-        timeLeft--;
-        $("#time-left").text(timeLeft);
+        quiz.timeLeft--;
+        $("#time-left").text(quiz.timeLeft);
 
     },
     //this is what happens when you select an answer
@@ -85,7 +86,7 @@ var quiz = {
         }
         // if the answer is wrong
         else {
-            $("#correct-text").html("<h1>You are gravely mistaken.</h1><br><h3>The correct answer was " + quiz.questions[questionNumber][quiz.correctAnswer] + ".</h3>");
+            $("#correct-text").html("<h1>You are gravely mistaken.</h1><br><h3>The correct answer was " + quiz.questions[quiz.questionNumber][quiz.correctAnswer] + ".</h3>");
             quiz.finishQuestion();
         }
     },
@@ -93,16 +94,16 @@ var quiz = {
     timeout: function () {
         clearInterval(questionTimeout);
 
-        $("#correct-text").html("<h1>You have RUN out of time.</h1><br><h3>The correct answer was " + quiz.questions[questionNumber][quiz.correctAnswer] + ".</h3>");
+        $("#correct-text").html("<h1>You have RUN out of time.</h1><br><h3>The correct answer was " + quiz.questions[quiz.questionNumber][quiz.correctAnswer] + ".</h3>");
         quiz.finishQuestion();
     },
     //all the above three conditions funnel to this
     finishQuestion: function () {
-        $("#fun-fact").text(quiz.questions[questionNumber].funFact);
-        $("#gif").attr("src", quiz.questions[questionNumber].imgLoc);
+        $("#fun-fact").text(quiz.questions[quiz.questionNumber].funFact);
+        $("#gif").attr("src", quiz.questions[quiz.questionNumber].imgLoc);
         $("#quiz-game").addClass("hide");
         $("#right-wrong").removeClass("hide");
-        questionNumber++;
+        quiz.questionNumber++;
         setTimeout(quiz.newQuestion, 10000);
     },
 }
