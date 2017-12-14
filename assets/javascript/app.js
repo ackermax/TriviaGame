@@ -76,7 +76,7 @@ var quiz = {
     questionSelect: function () {
         clearInterval(questionTimeout);
         clearTimeout(rightWrongTimeout);
-        // correctAnswer = $(this).is("#" + quiz.correctAnswer);
+
         if ($(this).is("#" + quiz.correctAnswer)) {
             quiz.points++;
             $("#correct-text").html("<h1>That answer is correct.</h1>");
@@ -90,7 +90,7 @@ var quiz = {
 
     timeout: function () {
         clearInterval(questionTimeout);
-        // correctAnswer = false;
+
         $("#correct-text").html("<h1>You have RUN out of time.</h1><br><h3>The correct answer was " + quiz.questions[questionNumber][quiz.correctAnswer] + ".</h3>");
         quiz.finishQuestion();
     },
